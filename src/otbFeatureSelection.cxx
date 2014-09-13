@@ -437,10 +437,12 @@ void FeatureSelection::DoExecute()
 
     //On sauvegarde l'image
     
-    //extractROIFilter->Update();
+    extractROIFilter->Update();
         
-   // SetParameterOutputImage ( "io.out", extractROIFilter->GetOutput() );
+    SetParameterOutputImage ( "io.out", extractROIFilter->GetOutput() );
     
+    
+    /**
         //On sauvegarde l'image
     typedef otb::ImageFileWriter<FloatVectorImageType> 	WriterType;
      WriterType::Pointer writer = WriterType::New();
@@ -450,7 +452,7 @@ void FeatureSelection::DoExecute()
     otbAppLogINFO("Write file "+outputBaseName );
     writer->SetInput(extractROIFilter->GetOutput());
     writer->Update();
-    
+    **/
 
 }
 
