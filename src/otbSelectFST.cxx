@@ -65,8 +65,8 @@
 
 //#include "search_bif.hpp"
 //#include "search_bif_threaded.hpp"
-#include "search_monte_carlo.hpp"
-#include "search_monte_carlo_threaded.hpp"
+
+
 //#include "search_exhaustive.hpp"
 //#include "search_exhaustive_threaded.hpp"
 #include "branch_and_bound_predictor_averaging.hpp"
@@ -138,23 +138,7 @@ void FeatureSelection::InitFSTParams()
    AddChoice("method.dos.svmkernel.linear", "linear kernel");
    AddChoice("method.dos.svmkernel.rbf", "rbf kernel  ");
    AddChoice("method.dos.svmkernel.poly", "poly kernel ");   
-   SetParameterString("method.dos.svmkernel", "rbf"); 
-
-   AddChoice ( "method.montecarlo", " MonteCarlo - random feature subset search" );
-   
-   
-   AddChoice ( "method.dafo","Dependency-Aware Feature Ranking" );
-   AddParameter ( ParameterType_Float, "method.dafo.maxsearchtime", "max search time " );
-   SetParameterDescription ( "method.dafo.maxsearchtime",
-                              "in seconds the more search time can be afforded the better, for very-high-dimensional problems set better to hours or more " );
-    SetParameterFloat ( "method.dafo.maxsearchtime", 600 );
-    AddParameter ( ParameterType_Float, "method.dafo.minprobecardinality", "min probe cardinality" );
-    SetParameterDescription("method.dafo.minprobecardinality", "lower limit on random probe subset cardinality (the default value is generally applicable");
-    SetParameterFloat("method.dafo.minprobecardinality", 5 );
-    AddParameter ( ParameterType_Float, "method.dafo.maxprobecardinality", "max probe cardinality" );
-    SetParameterDescription("method.dafo.maxprobecardinality", "upper limit on random probe subset cardinality (the default value is generally applicable");
-    SetParameterFloat("method.dafo.maxprobecardinality", 100 );
-    
+   SetParameterString("method.dos.svmkernel", "rbf");     
 }
 
 
@@ -263,163 +247,10 @@ ImportanceVector vImp;
   
   return vImp;
 }
-FeatureSelection::ImportanceVector FeatureSelection::getFeatureImportanceMonteCarlo ( ListSampleType::Pointer trainingListSample,
-        LabelListSampleType::Pointer trainingLabeledListSample )
-{
 
-         std::cout << "Starting Example 24: Monte Carlo - random feature subset search..." << std::endl;
-        // keep second half of data for independent testing of final classification performance
-        PSPLITTER dsp_outer ( new SPLITTER5050() );
-        // in the course of search use the first half of data by 3-fold cross-validation in wrapper FS criterion evaluation
-        PSPLITTER dsp_inner ( new SPLITTERCV ( 3 ) );
-        // do not scale data
-        boost::shared_ptr<FST::Data_Scaler<DATATYPE> > dsc ( new FST::Data_Scaler_void<DATATYPE>() );
-        // set-up data access
-        boost::shared_ptr<std::vector<PSPLITTER> > splitters ( new std::vector<PSPLITTER> );
-        splitters->push_back ( dsp_outer );
-        splitters->push_back ( dsp_inner );
-        boost::shared_ptr<DATAACCESSOR> da ( new DATAACCESSOR ( trainingListSample,trainingLabeledListSample,splitters,dsc ) );
-        da->initialize();
-        // initiate access to split data parts
-        da->setSplittingDepth ( 0 );
-        if ( !da->getFirstSplit() ) throw FST::fst_error ( "50/50 data split failed." );
-        da->setSplittingDepth ( 1 );
-        if ( !da->getFirstSplit() ) throw FST::fst_error ( "3-fold cross-validation failure." );
-        // initiate the storage for subset to-be-selected
-        boost::shared_ptr<SUBSET> sub ( new SUBSET ( da->getNoOfFeatures() ) );
-        sub->deselect_all();
-        // set-up 3-Nearest Neighbor classifier based on Euclidean distances
-        boost::shared_ptr<CLASSIFIERKNN> cknn ( new CLASSIFIERKNN );
-        cknn->set_k ( 3 );
-        // wrap the 3-NN classifier to enable its usage as FS criterion (criterion value will be estimated by 3-fold cross-val.)
-        boost::shared_ptr<WRAPPERKNN> wknn ( new WRAPPERKNN );
-        wknn->initialize ( cknn,da );
-        // set-up Sequential Forward Floating Selection search procedure
-        FST::Search_Monte_Carlo<RETURNTYPE,DIMTYPE,SUBSET,WRAPPERKNN> srch;
-        srch.set_cardinality_randomization ( 4,10 ); // select only subsets within specified cardinality limits
-        srch.set_stopping_condition ( 0/*max trials*/,100/*seconds*/ ); // one or both values must have positive value
-        // run the search
-        std::cout << "Feature selection setup:" << std::endl << *da << std::endl << srch << std::endl << *wknn << std::endl << std::endl;
-        RETURNTYPE critval_train, critval_test;
-        srch.set_output_detail ( FST::NORMAL ); // set FST::SILENT to disable all text output in the course of search (FST::NORMAL is default)
-        if ( !srch.search ( 0,critval_train,sub,wknn,std::cout ) ) throw FST::fst_error ( "Search not finished." );
-        // (optionally) validate result by estimating kNN accuracy on selected feature sub-space on independent test data
-        //da->setSplittingDepth(0);
-        //cknn->train(da,sub);
-        //cknn->test(critval_test,da);
-        //std::cout << "Validated "<<cknn->get_k()<<"-NN accuracy=" << critval_test << std::endl << std::endl;
-	
-ImportanceVector vImp;
-        vImp.reserve ( sub->get_n() );
-        for ( DIMTYPE d=0; d<sub->get_n(); d++ )
-        {
-            if ( sub->selected_raw ( d ) )
-                vImp.push_back ( std::make_pair ( d+1, 1 ) );
-            else
-                vImp.push_back ( std::make_pair ( d+1, 0 ) );
-        }
- 
-  return vImp;
-}
 
-FeatureSelection::ImportanceVector FeatureSelection::getFeatureImportanceDAF0 ( ListSampleType::Pointer trainingListSample,
-        LabelListSampleType::Pointer trainingLabeledListSample )
-{       
-  
-        
-  
-	std::cout << "Starting Dependency-Aware Feature Ranking (DAF0)..." << std::endl;
-        // keep second half of data for independent testing of final classification performance
-        PSPLITTER dsp_outer ( new SPLITTER5050() );
-        // in the course of search use the first half of data by 3-fold cross-validation in wrapper FS criterion evaluation
-        PSPLITTER dsp_inner ( new SPLITTERCV ( 3 ) );
-        // do not scale data
-        boost::shared_ptr<FST::Data_Scaler<DATATYPE> > dsc ( new FST::Data_Scaler_void<DATATYPE>() );
-        // set-up data access
-        boost::shared_ptr<std::vector<PSPLITTER> > splitters ( new std::vector<PSPLITTER> );
-        splitters->push_back ( dsp_outer );
-        splitters->push_back ( dsp_inner );
 
-        boost::shared_ptr<DATAACCESSOR> da ( new DATAACCESSOR ( trainingListSample,trainingLabeledListSample,splitters,dsc ) );
 
-        da->initialize();
-        // initiate access to split data parts
-        da->setSplittingDepth ( 0 );
-        if ( !da->getFirstSplit() ) throw FST::fst_error ( "50/50 data split failed." );
-        da->setSplittingDepth ( 1 );
-        if ( !da->getFirstSplit() ) throw FST::fst_error ( "3-fold cross-validation failure." );
-        // initiate the storage for subset to-be-selected
-        boost::shared_ptr<SUBSET> sub ( new SUBSET ( da->getNoOfFeatures() ) );
-        sub->deselect_all();
-        // set-up 3-Nearest Neighbor classifier based on Euclidean distances
-        boost::shared_ptr<CLASSIFIERKNN> cknn ( new CLASSIFIERKNN );
-        cknn->set_k ( 3 );
-        // wrap the 3-NN classifier to enable its usage as FS criterion (criterion value will be estimated by 3-fold cross-val.)
-        boost::shared_ptr<WRAPPERKNN> wknn ( new WRAPPERKNN );
-
-        wknn->initialize ( cknn,da );
-        // Dependency-Aware Feature ranking computation settings
-       // const unsigned long max_search_time=600; // in seconds (the more search time can be afforded the better; for very-high-dimensional problems set better to hours or more)
-       // const DIMTYPE min_probe_cardinality=5; // lower limit on random probe subset cardinality (the default value is generally applicable)
-       // const DIMTYPE max_probe_cardinality=100; // upper limit on random probe subset cardinality (the default value is generally applicable)
-        
-        const unsigned long max_search_time = GetParameterFloat(" method.dafo.maxsearchtime");
-        const DIMTYPE min_probe_cardinality = GetParameterFloat(" method.dafo.minprobecardinality");
-        const DIMTYPE max_probe_cardinality = GetParameterFloat(" method.dafo.maxprobecardinality");
-        
-        
-        // set-up the probe subset generation procedure
-        FST::Search_Monte_Carlo<RETURNTYPE,DIMTYPE,SUBSET,WRAPPERKNN> srch;
-        srch.set_cardinality_randomization ( min_probe_cardinality,max_probe_cardinality );
-        srch.set_stopping_condition ( 0/*max trials*/,max_search_time/*seconds*/ ); // one or both values must have positive value
-        // set-up tracker to gather data for eventual DAF rank computation
-        boost::shared_ptr<TRACKERSTATS> trackerstats ( new TRACKERSTATS );
-        srch.enable_result_tracking ( trackerstats );
-        // run the search
-        std::cout << "Feature selection setup:" << std::endl << *da << std::endl << srch << std::endl << *wknn << std::endl << std::endl;
-        RETURNTYPE critval_train, critval_test;
-        srch.set_output_detail ( FST::NORMAL ); // set FST::SILENT to disable all text output in the course of search (FST::NORMAL is default)
-        if ( !srch.search ( 0,critval_train,sub,wknn,std::cout ) ) throw FST::fst_error ( "Search not finished." );
-        // compute DAF ranking
-        //trackerstats->compute_stats();
-        //(optionally) print DAF computation statistics
-        //trackerstats->print_stats(std::cout);
-
-        // select user-specified number of features according to highest DAF feature rank values
-        // + validate result by estimating classifier accuracy on selected feature sub-space on independent test data
-        //	da->setSplittingDepth(0);
-        //	const DIMTYPE d=60;
-        //	unsigned int DAF=0; // DAF0 is the simplest and generally best performing option; DAF1 as a normalized version of DAF0 may occasionally yield better results
-// 		RETURNTYPE critval;
-// 		DIMTYPE i=0, feature;
-// 		sub->deselect_all();
-// 		bool found=trackerstats->getFirstDAF(critval,feature,DAF);
-// 		while(i++<d && found) {
-// 			sub->select(feature);
-// 			std::cout << "Added feature "<<feature<<", DAF"<<DAF<<"=" << critval << std::endl;
-// 			if(i%5==0) { // (optionally) validate result by estimating classifier accuracy on selected feature sub-space on independent test data
-// 				cknn->train(da,sub);
-// 				cknn->test(critval_test,da);
-// 				std::cout << *sub << std::endl << "Validated "<<cknn->get_k()<<"-NN accuracy=" << critval_test << std::endl << std::endl;
-// 			}
-// 			found=trackerstats->getNextDAF(critval,feature,DAF);
-// 		}
-	
-	ImportanceVector vImp;
-
-        vImp.reserve ( sub->get_n() );
-        for ( DIMTYPE d=0; d<sub->get_n(); d++ )
-        {
-            if ( sub->selected_raw ( d ) )
-                vImp.push_back ( std::make_pair ( d+1, 1 ) );
-            else
-                vImp.push_back ( std::make_pair ( d+1, 0 ) );
-        }
-
-   return vImp;
-  
-  
-}
 
 FeatureSelection::ImportanceVector FeatureSelection::getFeatureImportanceSFFS ( ListSampleType::Pointer trainingListSample,
         LabelListSampleType::Pointer trainingLabeledListSample )

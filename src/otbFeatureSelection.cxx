@@ -161,7 +161,7 @@ FeatureSelection::ImportanceVector FeatureSelection::getFeatureImportance ( List
     }
 #endif
 
-    else if (method=="sffs") 
+    if (method=="sffs") 
     {
         otbAppLogINFO("compute SFFS");
         vImp = getFeatureImportanceSFFS ( trainingListSample, trainingLabeledListSample );
@@ -173,18 +173,7 @@ FeatureSelection::ImportanceVector FeatureSelection::getFeatureImportance ( List
         vImp = getFeatureImportanceDOS ( trainingListSample, trainingLabeledListSample );
     }
     
-        else if (method=="montecarlo") 
-    {
-        otbAppLogINFO("compute Monte Carlo");
-        vImp = getFeatureImportanceMonteCarlo ( trainingListSample, trainingLabeledListSample );
-    }
-    
-     else if (method=="dafo") 
-    {
-        otbAppLogINFO("compute DAF0");
-        vImp = getFeatureImportanceDAF0( trainingListSample, trainingLabeledListSample );
-    }
-    
+        
     
     sort ( vImp.begin(), vImp.end(), ImportanceVectorSort );
     

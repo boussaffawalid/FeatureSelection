@@ -166,12 +166,7 @@ private:
     void InitFSTParams();
 
     std::vector<std::string> getBandList ( std::vector<std::string> images );
-
-    ImportanceVector getFeatureImportanceDAF0 ( ListSampleType::Pointer trainingListSample,
-            LabelListSampleType::Pointer trainingLabeledListSample );    
     
-    ImportanceVector getFeatureImportanceMonteCarlo ( ListSampleType::Pointer trainingListSample,
-            LabelListSampleType::Pointer trainingLabeledListSample );  
     
     ImportanceVector getFeatureImportanceDOS ( ListSampleType::Pointer trainingListSample,
             LabelListSampleType::Pointer trainingLabeledListSample );    
