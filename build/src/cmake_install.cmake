@@ -33,52 +33,52 @@ IF(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
 ENDIF(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
 
 IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "RuntimeLibraries")
-  IF(EXISTS "$ENV{DESTDIR}/usr/lib/otb/applications/otbapp_FeatureSelection.so" AND
-     NOT IS_SYMLINK "$ENV{DESTDIR}/usr/lib/otb/applications/otbapp_FeatureSelection.so")
+  IF(EXISTS "$ENV{DESTDIR}/usr/local/lib/otb/applications/otbapp_FeatureSelection.so" AND
+     NOT IS_SYMLINK "$ENV{DESTDIR}/usr/local/lib/otb/applications/otbapp_FeatureSelection.so")
     FILE(RPATH_CHECK
-         FILE "$ENV{DESTDIR}/usr/lib/otb/applications/otbapp_FeatureSelection.so"
+         FILE "$ENV{DESTDIR}/usr/local/lib/otb/applications/otbapp_FeatureSelection.so"
          RPATH "")
   ENDIF()
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/usr/lib/otb/applications/otbapp_FeatureSelection.so")
+   "/usr/local/lib/otb/applications/otbapp_FeatureSelection.so")
   IF (CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   ENDIF (CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
   IF (CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   ENDIF (CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
-FILE(INSTALL DESTINATION "/usr/lib/otb/applications" TYPE MODULE FILES "/home/walid/Projects/FeatureSelection/build/src/otbapp_FeatureSelection.so")
-  IF(EXISTS "$ENV{DESTDIR}/usr/lib/otb/applications/otbapp_FeatureSelection.so" AND
-     NOT IS_SYMLINK "$ENV{DESTDIR}/usr/lib/otb/applications/otbapp_FeatureSelection.so")
+FILE(INSTALL DESTINATION "/usr/local/lib/otb/applications" TYPE MODULE FILES "/home/walid/Projects/FeatureSelection/build/src/otbapp_FeatureSelection.so")
+  IF(EXISTS "$ENV{DESTDIR}/usr/local/lib/otb/applications/otbapp_FeatureSelection.so" AND
+     NOT IS_SYMLINK "$ENV{DESTDIR}/usr/local/lib/otb/applications/otbapp_FeatureSelection.so")
     FILE(RPATH_REMOVE
-         FILE "$ENV{DESTDIR}/usr/lib/otb/applications/otbapp_FeatureSelection.so")
+         FILE "$ENV{DESTDIR}/usr/local/lib/otb/applications/otbapp_FeatureSelection.so")
     IF(CMAKE_INSTALL_DO_STRIP)
-      EXECUTE_PROCESS(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}/usr/lib/otb/applications/otbapp_FeatureSelection.so")
+      EXECUTE_PROCESS(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}/usr/local/lib/otb/applications/otbapp_FeatureSelection.so")
     ENDIF(CMAKE_INSTALL_DO_STRIP)
   ENDIF()
 ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "RuntimeLibraries")
 
 IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "RuntimeLibraries")
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/usr/bin/otbcli_FeatureSelection")
+   "/usr/local/bin/otbcli_FeatureSelection")
   IF (CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   ENDIF (CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
   IF (CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   ENDIF (CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
-FILE(INSTALL DESTINATION "/usr/bin" TYPE PROGRAM FILES "/home/walid/Projects/FeatureSelection/build/src/otbcli_FeatureSelection")
+FILE(INSTALL DESTINATION "/usr/local/bin" TYPE PROGRAM FILES "/home/walid/Projects/FeatureSelection/build/src/otbcli_FeatureSelection")
 ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "RuntimeLibraries")
 
 IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "RuntimeLibraries")
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/usr/bin/otbgui_FeatureSelection")
+   "/usr/local/bin/otbgui_FeatureSelection")
   IF (CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   ENDIF (CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
   IF (CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   ENDIF (CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
-FILE(INSTALL DESTINATION "/usr/bin" TYPE PROGRAM FILES "/home/walid/Projects/FeatureSelection/build/src/otbgui_FeatureSelection")
+FILE(INSTALL DESTINATION "/usr/local/bin" TYPE PROGRAM FILES "/home/walid/Projects/FeatureSelection/build/src/otbgui_FeatureSelection")
 ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "RuntimeLibraries")
 

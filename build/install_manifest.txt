@@ -1,3 +1,3 @@
-/usr/lib/otb/applications/otbapp_FeatureSelection.so
-/usr/bin/otbcli_FeatureSelection
-/usr/bin/otbgui_FeatureSelection
+/usr/local/lib/otb/applications/otbapp_FeatureSelection.so
+/usr/local/bin/otbcli_FeatureSelection
+/usr/local/bin/otbgui_FeatureSelection

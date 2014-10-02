@@ -4,6 +4,8 @@ PROJECT(FeatureSelection)
 CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
 
 
+SET( CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -Wcpp" )
+
 #include OTB library
 FIND_PACKAGE(OTB)
 IF(OTB_FOUND)  
@@ -13,6 +15,13 @@ ELSE(OTB_FOUND)
       "Cannot build OTB project without OTB.  Please set OTB_DIR.")  
 ENDIF(OTB_FOUND)
 
+#include ITK library
+FIND_PACKAGE(ITK) 
+IF( NOT ITK_FOUND ) 
+MESSAGE( "Project ${PROJECT_NAME} requires ITK and ITK was not found. ${PROJECT_NAME} will not be built." ) 
+RETURN() 
+ENDIF() 
+INCLUDE( ${ITK_USE_FILE})
 
 #-----------------------------------------------------------------------------
 # Installation vars.

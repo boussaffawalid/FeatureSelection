@@ -14,12 +14,6 @@
 # EXTERNAL cache entries
 ########################
 
-//The directory containing a CMake configuration file for Boost.
-Boost_DIR:PATH=Boost_DIR-NOTFOUND
-
-//Path to a file.
-Boost_INCLUDE_DIR:PATH=/usr/include
-
 //Path to a program.
 CMAKE_AR:FILEPATH=/usr/bin/ar
 
@@ -176,100 +170,26 @@ CMAKE_USE_RELATIVE_PATHS:BOOL=OFF
 // Studio IDE projects all commands are done without /nologo.
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
-//Path to a program.
-DCMTK_DCMDJPEG_EXECUTABLE:FILEPATH=DCMTK_DCMDJPEG_EXECUTABLE-NOTFOUND
-
-//Path to a program.
-DCMTK_DCMDRLE_EXECUTABLE:FILEPATH=DCMTK_DCMDRLE_EXECUTABLE-NOTFOUND
-
-//Path to a program.
-DCMTK_DCMDUMP_EXECUTABLE:FILEPATH=DCMTK_DCMDUMP_EXECUTABLE-NOTFOUND
-
-//Path to a file.
-DCMTK_config_INCLUDE_DIR:PATH=/usr/include/dcmtk/config
-
-//Path to a file.
-DCMTK_dcmdata_INCLUDE_DIR:PATH=/usr/include/dcmtk/dcmdata
-
-//Path to a library.
-DCMTK_dcmdata_LIBRARY:FILEPATH=/usr/lib/libdcmdata.so
-
-//Path to a file.
-DCMTK_dcmimage_INCLUDE_DIR:PATH=/usr/include/dcmtk/dcmimage
-
-//Path to a library.
-DCMTK_dcmimage_LIBRARY:FILEPATH=/usr/lib/libdcmimage.so
-
-//Path to a file.
-DCMTK_dcmimgle_INCLUDE_DIR:PATH=/usr/include/dcmtk/dcmimgle
-
-//Path to a library.
-DCMTK_dcmimgle_LIBRARY:FILEPATH=/usr/lib/libdcmimgle.so
-
-//Path to a file.
-DCMTK_dcmjpeg_INCLUDE_DIR:PATH=/usr/include/dcmtk/dcmjpeg
-
-//Path to a library.
-DCMTK_dcmjpeg_LIBRARY:FILEPATH=/usr/lib/libdcmjpeg.so
-
-//Path to a file.
-DCMTK_dcmnet_INCLUDE_DIR:PATH=/usr/include/dcmtk/dcmnet
-
-//Path to a library.
-DCMTK_dcmnet_LIBRARY:FILEPATH=/usr/lib/libdcmnet.so
-
-//Path to a file.
-DCMTK_dcmpstat_INCLUDE_DIR:PATH=/usr/include/dcmtk/dcmpstat
-
-//Path to a library.
-DCMTK_dcmpstat_LIBRARY:FILEPATH=/usr/lib/libdcmpstat.so
-
-//Path to a file.
-DCMTK_dcmqrdb_INCLUDE_DIR:PATH=/usr/include/dcmtk/dcmqrdb
-
-//Path to a library.
-DCMTK_dcmqrdb_LIBRARY:FILEPATH=/usr/lib/libdcmqrdb.so
-
-//Path to a file.
-DCMTK_dcmsign_INCLUDE_DIR:PATH=/usr/include/dcmtk/dcmsign
-
-//Path to a library.
-DCMTK_dcmsign_LIBRARY:FILEPATH=DCMTK_dcmsign_LIBRARY-NOTFOUND
-
-//Path to a file.
-DCMTK_dcmsr_INCLUDE_DIR:PATH=/usr/include/dcmtk/dcmsr
-
-//Path to a library.
-DCMTK_dcmsr_LIBRARY:FILEPATH=/usr/lib/libdcmsr.so
-
-DCMTK_dcmtk_INCLUDE_DIR:FILEPATH=/usr/include/dcmtk
-
-//Path to a file.
-DCMTK_dcmtls_INCLUDE_DIR:PATH=/usr/include/dcmtk/dcmtls
-
-//Path to a library.
-DCMTK_dcmtls_LIBRARY:FILEPATH=/usr/lib/libdcmtls.so
-
-//Path to a library.
-DCMTK_ijg12_LIBRARY:FILEPATH=/usr/lib/libijg12.so
-
-//Path to a library.
-DCMTK_ijg16_LIBRARY:FILEPATH=/usr/lib/libijg16.so
-
-//Path to a library.
-DCMTK_ijg8_LIBRARY:FILEPATH=/usr/lib/libijg8.so
-
-//Path to a file.
-DCMTK_ofstd_INCLUDE_DIR:PATH=/usr/include/dcmtk/ofstd
-
-//Path to a library.
-DCMTK_ofstd_LIBRARY:FILEPATH=/usr/lib/libofstd.so
-
 //Path to a file.
 EXPAT_INCLUDE_DIR:PATH=/usr/include
 
 //Path to a library.
 EXPAT_LIBRARY:FILEPATH=/usr/lib/i386-linux-gnu/libexpat.so
+
+//Path to a library.
+FFTWD_LIB:FILEPATH=/usr/lib/i386-linux-gnu/libfftw3.so
+
+//Path to a library.
+FFTWD_THREADS_LIB:FILEPATH=/usr/lib/i386-linux-gnu/libfftw3_threads.so
+
+//Path to a library.
+FFTWF_LIB:FILEPATH=/usr/lib/i386-linux-gnu/libfftw3f.so
+
+//Path to a library.
+FFTWF_THREADS_LIB:FILEPATH=/usr/lib/i386-linux-gnu/libfftw3f_threads.so
+
+//Path to a file.
+FFTW_INCLUDE_PATH:PATH=/usr/include
 
 //Value Computed by CMake
 FeatureSelection_BINARY_DIR:STATIC=/home/walid/Projects/FeatureSelection/build
@@ -287,7 +207,7 @@ GDAL_INCLUDE_DIR:PATH=/usr/include/gdal
 GDAL_LIBRARY:FILEPATH=/usr/lib/libgdal.so
 
 //The directory containing a CMake configuration file for ITK.
-ITK_DIR:PATH=/usr/lib/cmake/ITK-4.5
+ITK_DIR:PATH=/usr/local/lib/cmake/ITK-4.6
 
 //Path to a library.
 LIBKML_BASE_LIBRARY:FILEPATH=/usr/lib/i386-linux-gnu/libkmlbase.so
@@ -317,13 +237,13 @@ LIBKML_XSD_LIBRARY:FILEPATH=/usr/lib/i386-linux-gnu/libkmlxsd.so
 OTB_APPLICATIONS_NAME_LIST:STRING=FeatureSelection
 
 //Path to a program.
-OTB_APPLICATION_LAUNCHER:FILEPATH=/usr/bin/otbApplicationLauncherCommandLine
+OTB_APPLICATION_LAUNCHER:FILEPATH=/usr/local/bin/otbApplicationLauncherCommandLine
 
 //The directory containing a CMake configuration file for OTB.
-OTB_DIR:PATH=/usr/lib/otb
+OTB_DIR:PATH=/usr/local/lib/otb
 
 //Path to a program.
-OTB_TEST_DRIVER:FILEPATH=/usr/bin/otbTestDriver
+OTB_TEST_DRIVER:FILEPATH=/usr/local/bin/otbTestDriver
 
 //Path where debug 3rdpaty OpenCV dependencies are located
 OpenCV_3RDPARTY_LIB_DIR_DBG:PATH=
@@ -350,10 +270,6 @@ otbapp_FeatureSelection_LIB_DEPENDS:STATIC=general;OTBApplicationEngine;general;
 # INTERNAL cache entries
 ########################
 
-//ADVANCED property for variable: Boost_DIR
-Boost_DIR-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: Boost_INCLUDE_DIR
-Boost_INCLUDE_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_AR
 CMAKE_AR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_BUILD_TOOL
@@ -483,72 +399,14 @@ CMAKE_UNAME:INTERNAL=/bin/uname
 CMAKE_USE_RELATIVE_PATHS-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: DCMTK_DCMDJPEG_EXECUTABLE
-DCMTK_DCMDJPEG_EXECUTABLE-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: DCMTK_DCMDRLE_EXECUTABLE
-DCMTK_DCMDRLE_EXECUTABLE-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: DCMTK_DCMDUMP_EXECUTABLE
-DCMTK_DCMDUMP_EXECUTABLE-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: DCMTK_config_INCLUDE_DIR
-DCMTK_config_INCLUDE_DIR-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: DCMTK_dcmdata_INCLUDE_DIR
-DCMTK_dcmdata_INCLUDE_DIR-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: DCMTK_dcmdata_LIBRARY
-DCMTK_dcmdata_LIBRARY-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: DCMTK_dcmimage_INCLUDE_DIR
-DCMTK_dcmimage_INCLUDE_DIR-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: DCMTK_dcmimage_LIBRARY
-DCMTK_dcmimage_LIBRARY-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: DCMTK_dcmimgle_INCLUDE_DIR
-DCMTK_dcmimgle_INCLUDE_DIR-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: DCMTK_dcmimgle_LIBRARY
-DCMTK_dcmimgle_LIBRARY-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: DCMTK_dcmjpeg_INCLUDE_DIR
-DCMTK_dcmjpeg_INCLUDE_DIR-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: DCMTK_dcmjpeg_LIBRARY
-DCMTK_dcmjpeg_LIBRARY-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: DCMTK_dcmnet_INCLUDE_DIR
-DCMTK_dcmnet_INCLUDE_DIR-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: DCMTK_dcmnet_LIBRARY
-DCMTK_dcmnet_LIBRARY-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: DCMTK_dcmpstat_INCLUDE_DIR
-DCMTK_dcmpstat_INCLUDE_DIR-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: DCMTK_dcmpstat_LIBRARY
-DCMTK_dcmpstat_LIBRARY-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: DCMTK_dcmqrdb_INCLUDE_DIR
-DCMTK_dcmqrdb_INCLUDE_DIR-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: DCMTK_dcmqrdb_LIBRARY
-DCMTK_dcmqrdb_LIBRARY-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: DCMTK_dcmsign_INCLUDE_DIR
-DCMTK_dcmsign_INCLUDE_DIR-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: DCMTK_dcmsign_LIBRARY
-DCMTK_dcmsign_LIBRARY-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: DCMTK_dcmsr_INCLUDE_DIR
-DCMTK_dcmsr_INCLUDE_DIR-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: DCMTK_dcmsr_LIBRARY
-DCMTK_dcmsr_LIBRARY-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: DCMTK_dcmtk_INCLUDE_DIR
-DCMTK_dcmtk_INCLUDE_DIR-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: DCMTK_dcmtls_INCLUDE_DIR
-DCMTK_dcmtls_INCLUDE_DIR-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: DCMTK_dcmtls_LIBRARY
-DCMTK_dcmtls_LIBRARY-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: DCMTK_ijg12_LIBRARY
-DCMTK_ijg12_LIBRARY-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: DCMTK_ijg16_LIBRARY
-DCMTK_ijg16_LIBRARY-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: DCMTK_ijg8_LIBRARY
-DCMTK_ijg8_LIBRARY-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: DCMTK_ofstd_INCLUDE_DIR
-DCMTK_ofstd_INCLUDE_DIR-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: DCMTK_ofstd_LIBRARY
-DCMTK_ofstd_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: EXPAT_INCLUDE_DIR
 EXPAT_INCLUDE_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: EXPAT_LIBRARY
 EXPAT_LIBRARY-ADVANCED:INTERNAL=1
-//Details about finding DCMTK
-FIND_PACKAGE_MESSAGE_DETAILS_DCMTK:INTERNAL=[/usr/include/dcmtk/config][/usr/include/dcmtk/ofstd][/usr/lib/libofstd.so][/usr/include/dcmtk/dcmdata][/usr/lib/libdcmdata.so][/usr/include/dcmtk/dcmimgle][/usr/lib/libdcmimgle.so][v()]
+//ADVANCED property for variable: FFTWD_LIB
+FFTWD_LIB-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: FFTWF_LIB
+FFTWF_LIB-ADVANCED:INTERNAL=1
 //Details about finding EXPAT
 FIND_PACKAGE_MESSAGE_DETAILS_EXPAT:INTERNAL=[/usr/lib/i386-linux-gnu/libexpat.so][/usr/include][v()]
 //Details about finding GDAL
@@ -583,10 +441,4 @@ OpenCV_CONFIG_PATH-ADVANCED:INTERNAL=1
 OpenCV_LIB_DIR_DBG-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: OpenCV_LIB_DIR_OPT
 OpenCV_LIB_DIR_OPT-ADVANCED:INTERNAL=1
-//Components requested for this build tree.
-_Boost_COMPONENTS_SEARCHED:INTERNAL=
-//Last used Boost_INCLUDE_DIR value.
-_Boost_INCLUDE_DIR_LAST:INTERNAL=/usr/include
-//Last used Boost_USE_MULTITHREADED value.
-_Boost_USE_MULTITHREADED_LAST:INTERNAL=TRUE
 

@@ -14,5 +14,26 @@ Environment Profile=
 Extra Arguments=
 Install Directory=file:///usr/local
 
+[Launch]
+Launch Configurations=Launch Configuration 0
+
+[Launch][Launch Configuration 0]
+Configured Launch Modes=execute
+Configured Launchers=nativeAppLauncher
+Name=New Application Launcher
+Type=Native Application
+
+[Launch][Launch Configuration 0][Data]
+Arguments=FeatureSelection /home/walid/Projects/FeatureSelection/build/src  -io.il  ./HaralickTexture/IMG_PHR1A_MS_201311011016400_ORT_729908101-002_R1C1_georef_TEX_1.tif ./HaralickTexture/IMG_PHR1A_MS_201311011016400_ORT_729908101-002_R1C1_georef_TEX_2.tif ./HaralickTexture/IMG_PHR1A_MS_201311011016400_ORT_729908101-002_R1C1_georef_TEX_3.tif ./HaralickTexture/IMG_PHR1A_MS_201311011016400_ORT_729908101-002_R1C1_georef_TEX_4.tif ./RadiometricIndices/Soil/IMG_PHR1A_MS_201311011016400_ORT_729908101-002_R1C1_georef_Soil:BI.tif ./RadiometricIndices/Soil/IMG_PHR1A_MS_201311011016400_ORT_729908101-002_R1C1_georef_Soil:BI2.tif ./RadiometricIndices/Soil/IMG_PHR1A_MS_201311011016400_ORT_729908101-002_R1C1_georef_Soil:CI.tif ./RadiometricIndices/Soil/IMG_PHR1A_MS_201311011016400_ORT_729908101-002_R1C1_georef_Soil:RI.tif ./RadiometricIndices/Vegetation/IMG_PHR1A_MS_201311011016400_ORT_729908101-002_R1C1_georef_Vegetation:GEMI.tif ./RadiometricIndices/Vegetation/IMG_PHR1A_MS_201311011016400_ORT_729908101-002_R1C1_georef_Vegetation:IPVI.tif ./RadiometricIndices/Vegetation/IMG_PHR1A_MS_201311011016400_ORT_729908101-002_R1C1_georef_Vegetation:MSAVI.tif ./RadiometricIndices/Vegetation/IMG_PHR1A_MS_201311011016400_ORT_729908101-002_R1C1_georef_Vegetation:MSAVI2.tif ./RadiometricIndices/Vegetation/IMG_PHR1A_MS_201311011016400_ORT_729908101-002_R1C1_georef_Vegetation:NDVI.tif ./RadiometricIndices/Vegetation/IMG_PHR1A_MS_201311011016400_ORT_729908101-002_R1C1_georef_Vegetation:RVI.tif ./RadiometricIndices/Vegetation/IMG_PHR1A_MS_201311011016400_ORT_729908101-002_R1C1_georef_Vegetation:SAVI.tif ./RadiometricIndices/Vegetation/IMG_PHR1A_MS_201311011016400_ORT_729908101-002_R1C1_georef_Vegetation:TNDVI.tif ./RadiometricIndices/Vegetation/IMG_PHR1A_MS_201311011016400_ORT_729908101-002_R1C1_georef_Vegetation:TSAVI.tif ./RadiometricIndices/Water/IMG_PHR1A_MS_201311011016400_ORT_729908101-002_R1C1_georef_Water:MNDWI.tif ./RadiometricIndices/Water/IMG_PHR1A_MS_201311011016400_ORT_729908101-002_R1C1_georef_Water:NDPI.tif ./RadiometricIndices/Water/IMG_PHR1A_MS_201311011016400_ORT_729908101-002_R1C1_georef_Water:NDTI.tif ./RadiometricIndices/Water/IMG_PHR1A_MS_201311011016400_ORT_729908101-002_R1C1_georef_Water:NDWI.tif ./RadiometricIndices/Water/IMG_PHR1A_MS_201311011016400_ORT_729908101-002_R1C1_georef_Water:NDWI2.tif ./Superimpose/IMG_PHR1A_P_201311011016400_ORT_729908101-001_R1C1_georef_Reprojected.tif ./Superimpose/IMG_PHR1A_P_201311011016400_ORT_729908101-001_R1C1_georef_TEX_Reprojected.tif /media/walid/0CE11AB96332E309/data/pleiade/FCGC600101964_20131101/IMG_PHR1A_MS_002/georef/IMG_PHR1A_MS_201311011016400_ORT_729908101-002_R1C1_georef.tif -io.out ./Selected_feature/selectedFeature_sffs.tif -io.vd /media/walid/0CE11AB96332E309/Pleiade-nov/shapefile/nomenclature_PL_NOV/niveau3/all_train_N3.shp -method sffs -nbcomp 20 -sample.vfn Class
+Dependencies=@Variant(\x00\x00\x00\t\x00\x00\x00\x00\x00)
+Dependency Action=Nothing
+EnvironmentGroup=default
+Executable=file:///usr/bin/otbApplicationLauncherCommandLine
+External Terminal=konsole --noclose --workdir %workdir -e %exe
+Project Target=
+Use External Terminal=false
+Working Directory=file:///media/walid/0CE11AB96332E309/Pleiade-nov
+isExecutable=true
+
 [Project]
 VersionControlSupport=kdevgit
