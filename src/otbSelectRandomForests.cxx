@@ -115,15 +115,17 @@ FeatureSelection::ImportanceVector FeatureSelection::getFeatureImportanceRandomF
 
     classifier->Train();
     //On recupere l'importance des variables
-    cv::Mat importance=classifier->GetVariableImportance();
+    itk::VariableSizeMatrix<float>  importance = classifier->GetVariableImportance();
 
-    int dim_training_data = importance.cols;
-
+    int dim_training_data = importance.Cols();
+   
+    
+    
     ImportanceVector vImp;
     vImp.reserve ( dim_training_data );
 
     for ( int n=1; n<=dim_training_data; n++ )
-        vImp.push_back ( std::make_pair ( n,importance.at<float> ( 0,n ) ) );
+        vImp.push_back ( std::make_pair ( n, importance[0][n] ) );
 
     return vImp;
 }

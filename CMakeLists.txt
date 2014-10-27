@@ -16,12 +16,12 @@ ELSE(OTB_FOUND)
 ENDIF(OTB_FOUND)
 
 #include ITK library
-FIND_PACKAGE(ITK) 
-IF( NOT ITK_FOUND ) 
-MESSAGE( "Project ${PROJECT_NAME} requires ITK and ITK was not found. ${PROJECT_NAME} will not be built." ) 
-RETURN() 
-ENDIF() 
-INCLUDE( ${ITK_USE_FILE})
+#FIND_PACKAGE(ITK) 
+#IF( NOT ITK_FOUND ) 
+#MESSAGE( "Project ${PROJECT_NAME} requires ITK and ITK was not found. ${PROJECT_NAME} will not be built." ) 
+#RETURN() 
+#ENDIF() 
+#INCLUDE( ${ITK_USE_FILE})
 
 #-----------------------------------------------------------------------------
 # Installation vars.
