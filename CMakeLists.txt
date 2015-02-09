@@ -15,14 +15,17 @@ ELSE(OTB_FOUND)
       "Cannot build OTB project without OTB.  Please set OTB_DIR.")  
 ENDIF(OTB_FOUND)
 
-#include ITK library
-#FIND_PACKAGE(ITK) 
-#IF( NOT ITK_FOUND ) 
-#MESSAGE( "Project ${PROJECT_NAME} requires ITK and ITK was not found. ${PROJECT_NAME} will not be built." ) 
-#RETURN() 
-#ENDIF() 
-#INCLUDE( ${ITK_USE_FILE})
-
+MESSAGE("OTB_USE_EXTERNAL_ITK: ${OTB_USE_EXTERNAL_ITK}")
+IF(NOT OTB_USE_EXTERNAL_ITK)
+	#include ITK library
+	FIND_PACKAGE(ITK) 
+	IF( NOT ITK_FOUND ) 
+		MESSAGE( FATAL_ERROR "Project ${PROJECT_NAME} requires ITK and ITK was not found. ${PROJECT_NAME} will not be built." ) 
+		RETURN() 
+	ENDIF() 
+	INCLUDE( ${ITK_USE_FILE})
+ENDIF()
+#
 #-----------------------------------------------------------------------------
 # Installation vars.
 # OTB_INSTALL_BIN_DIR          - binary dir (executables)
