@@ -433,6 +433,23 @@ void FeatureSelection::DoExecute()
         }
     }
 
+  //save impotance vector  
+  std::ofstream myfile ("importance.txt");
+    
+  if (myfile.is_open())
+  {
+    myfile << "Saving score for each band !! .\n\n";
+    
+    for ( int i =0; i<imagesBandList.size(); i++ )
+    {
+      myfile << "[ band number- "<< vImp[i].first<<"] -> [Score = " << vImp[i].second  <<"][Path:" << imagesBandList[ vImp[i].first -1 ] <<std::endl;
+    }
+    
+    myfile.close();
+  }
+  else std::cout << "Unable to open importance file";
+  
+  
     otbAppLogINFO ( "Start writing image " );
 
     //On sauvegarde l'image
