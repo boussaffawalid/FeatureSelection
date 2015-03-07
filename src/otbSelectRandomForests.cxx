@@ -114,18 +114,37 @@ FeatureSelection::ImportanceVector FeatureSelection::getFeatureImportanceRandomF
     classifier->SetCalculateVariableImportance ( true );
 
     classifier->Train();
+
+
+
+#if OTB_VERSION_MAJOR == 4 &&  OTB_VERSION_MINOR < 4
+
+    cv::Mat importance=classifier->GetVariableImportance();
+
+    int dim_training_data = importance.cols;
+
+    ImportanceVector vImp;
+    vImp.reserve ( dim_training_data );
+    for ( int n=0; n<dim_training_data; n++ )
+        vImp.push_back ( std::make_pair ( n,importance.at<float> ( 0,n ) ) );
+
+
+#else
+
     //On recupere l'importance des variables
     itk::VariableSizeMatrix<float>  importance = classifier->GetVariableImportance();
 
     int dim_training_data = importance.Cols();
-   
-    
-    
+
     ImportanceVector vImp;
     vImp.reserve ( dim_training_data );
 
     for ( int n=1; n<=dim_training_data; n++ )
         vImp.push_back ( std::make_pair ( n, importance[0][n] ) );
+
+#endif
+
+
 
     return vImp;
 }

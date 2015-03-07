@@ -429,7 +429,7 @@ void FeatureSelection::DoExecute()
         {
             extractROIFilter->SetChannel ( vImp[i].first );
 
-            otbAppLogINFO ( "keep channel number: " << vImp[i].first  <<" "<< imagesBandList[ vImp[i].first -1 ]  <<std::endl ); // vector start from 0
+            otbAppLogINFO ( "keep channel number: " << vImp[i].first  <<", Score: "<<  vImp[i].second << " , band: "<< imagesBandList[ vImp[i].first -1 ]  <<std::endl ); // vector start from 0
         }
     }
 
@@ -449,6 +449,8 @@ void FeatureSelection::DoExecute()
   }
   else std::cout << "Unable to open importance file";
   
+  
+  std::exit(1);
   
     otbAppLogINFO ( "Start writing image " );
 
