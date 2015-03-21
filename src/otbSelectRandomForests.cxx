@@ -117,19 +117,8 @@ FeatureSelection::ImportanceVector FeatureSelection::getFeatureImportanceRandomF
 
 
 
-#if OTB_VERSION_MAJOR == 4 &&  OTB_VERSION_MINOR < 4
+#if OTB_VERSION_MAJOR == 4 &&  OTB_VERSION_MINOR > 4
 
-    cv::Mat importance=classifier->GetVariableImportance();
-
-    int dim_training_data = importance.cols;
-
-    ImportanceVector vImp;
-    vImp.reserve ( dim_training_data );
-    for ( int n=0; n<dim_training_data; n++ )
-        vImp.push_back ( std::make_pair ( n,importance.at<float> ( 0,n ) ) );
-
-
-#else
 
     //On recupere l'importance des variables
     itk::VariableSizeMatrix<float>  importance = classifier->GetVariableImportance();
@@ -139,9 +128,22 @@ FeatureSelection::ImportanceVector FeatureSelection::getFeatureImportanceRandomF
     ImportanceVector vImp;
     vImp.reserve ( dim_training_data );
 
-    for ( int n=1; n<=dim_training_data; n++ )
-        vImp.push_back ( std::make_pair ( n, importance[0][n] ) );
+   for ( int i=0; i< dim_training_data; i++ )
+        vImp.push_back ( std::make_pair ( i+1, importance[0][i] ) ); // i+1 because extractROIFilter->SetChannel start from 1 
 
+        
+
+#else
+
+    cv::Mat importance=classifier->GetVariableImportance();
+
+    int dim_training_data = importance.cols;
+
+    ImportanceVector vImp;
+    vImp.reserve ( dim_training_data );
+    for ( int i=0; i<dim_training_data; i++ )
+        vImp.push_back ( std::make_pair ( i +1 ,importance.at<float> ( 0,i ) ) ); // i+1 because extractROIFilter->SetChannel start from 1 
+        
 #endif
 
 
