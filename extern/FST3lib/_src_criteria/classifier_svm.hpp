@@ -59,8 +59,14 @@ Limitation of Liability:
 #include "error.hpp"
 #include "global.hpp"
 #include "classifier.hpp"
-#include "svm.h"
 
+
+
+#if OTB_VERSION_MAJOR == 4 &&  OTB_VERSION_MINOR > 4
+#include "otblibsvm/svm.h"
+#else
+#include "svm.h"
+#endif 
 /*============== Template parameter type naming conventions ==============
 --------- Numeric types: -------------------------------------------------
 DATATYPE - data sample values - usually real numbers (but may be integers

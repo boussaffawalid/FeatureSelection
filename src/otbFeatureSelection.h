@@ -22,7 +22,7 @@
 
 #include <iostream>
 #include <stdio.h>
-#include "otbConfigurationFile.h"
+//#include "otbConfigurationFile.h"
 
 //Image
 #include "otbImage.h"

@@ -16,7 +16,12 @@ if(OTB_USE_OPENCV)
 endif()
 
 
+#OTB_CREATE_APPLICATION(NAME         FeatureSelection
+#                       SOURCES      ${FeatureSelection_SRC}
+#                       LINK_LIBRARIES OTBIO;OTBCommon;OTBBasicFilters;OTBFeatureExtraction;OTBLearning)
+
 OTB_CREATE_APPLICATION(NAME         FeatureSelection
                        SOURCES      ${FeatureSelection_SRC}
-                       LINK_LIBRARIES OTBIO;OTBCommon;OTBBasicFilters;OTBFeatureExtraction;OTBLearning)
+                       LINK_LIBRARIES ${OTB_LIBRARIES})
+                        
  

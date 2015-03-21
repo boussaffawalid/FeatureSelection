@@ -184,7 +184,7 @@ FeatureSelection::ImportanceVector FeatureSelection::getFeatureImportance ( List
 ///////
 
 
-std::vector< std::string > FeatureSelection::getBandList ( std::vector< string > images )
+std::vector< std::string > FeatureSelection::getBandList ( std::vector< std::string > images )
 {
 
     otb::ImageFileReader<FloatVectorImageType>::Pointer reader  = otb::ImageFileReader<FloatVectorImageType>::New();
