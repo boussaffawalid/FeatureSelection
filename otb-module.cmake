@@ -16,5 +16,5 @@ otb_module(AppFeatureSelection
     OTBVectorDataBase
 
   DESCRIPTION
-    "Feature
+    "Feature selection application contributed by Walid bouceffa and Nesrine Chehata"
 )
