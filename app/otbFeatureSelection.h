@@ -16,6 +16,8 @@
  PURPOSE.  See the above copyright notices for more information.
 
  =========================================================================*/
+#ifndef __otbFeatureSelection_h
+#define __otbFeatureSelection_h
 
 #include "otbWrapperApplication.h"
 #include "otbWrapperApplicationFactory.h"
@@ -211,5 +213,4 @@ private:
 
 }
 }
-
-
+#endif

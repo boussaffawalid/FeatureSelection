@@ -1,2 +1,0 @@
-/* FST */
-#cmakedefine OTB_USE_FST
