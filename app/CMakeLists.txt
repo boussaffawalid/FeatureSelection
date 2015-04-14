@@ -10,6 +10,6 @@ endif()
 
 OTB_CREATE_APPLICATION(NAME         FeatureSelection
                        SOURCES      ${FeatureSelection_SRC}
-                       LINK_LIBRARIES ${OTB_LIBRARIES})
+                       LINK_LIBRARIES ${${otb-module}_LIBRARIES})
                         
  
